@@ -328,7 +328,7 @@
   "variable": [
     {
       "key": "baseUrl",
-      "value": "https://your-deployed-app.com/api",
+      "value": "https://complyance-task-server.vercel.app/api",
       "type": "string"
     },
     {

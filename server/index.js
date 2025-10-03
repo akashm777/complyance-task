@@ -46,11 +46,11 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/invoice-a
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log('✅ MongoDB connected successfully'))
-.catch(err => {
-  console.error('❌ MongoDB connection error:', err);
-  process.exit(1);
-});
+  .then(() => console.log('✅ MongoDB connected successfully'))
+  .catch(err => {
+    console.error('❌ MongoDB connection error:', err);
+    process.exit(1);
+  });
 
 // Root route for testing
 app.get('/', (req, res) => {
