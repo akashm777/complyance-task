@@ -52,7 +52,21 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/invoice-a
   process.exit(1);
 });
 
-// Routes
+// Root route for testing
+app.get('/', (req, res) => {
+  res.json({
+    message: 'E-Invoicing Readiness Analyzer API',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      upload: '/api/upload',
+      analyze: '/api/analyze',
+      reports: '/api/reports'
+    }
+  });
+});
+
+// API Routes
 app.use('/api', uploadRoutes);
 app.use('/api', analyzeRoutes);
 app.use('/api', reportRoutes);
@@ -74,13 +88,13 @@ app.use('*', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-// For local development
-if (process.env.NODE_ENV !== 'production') {
+// Start server (works for both local and most cloud platforms)
+if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
     console.log(`📊 Environment: ${process.env.NODE_ENV}`);
   });
 }
 
-// Export for Vercel
+// Export for serverless platforms (Vercel, Netlify, etc.)
 module.exports = app;
