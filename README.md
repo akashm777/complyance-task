@@ -81,4 +81,3 @@ Use provided sample files:
 - **Performance**: Processes ≤200 rows in <5 seconds
 - **Security**: Rate limiting, input validation, CORS protection
 
-Built over 4 days focusing on robust field detection and comprehensive validation to meet all assignment requirements.
