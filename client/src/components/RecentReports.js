@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import API_BASE_URL from '../config/api';
 
 const RecentReports = () => {
   const [reports, setReports] = useState([]);
@@ -25,7 +26,7 @@ const RecentReports = () => {
   const loadReports = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/reports?limit=20');
+      const response = await axios.get(`${API_BASE_URL}/api/reports?limit=20`);
       setReports(response.data.reports || []);
     } catch (error) {
       console.error('Load reports error:', error);

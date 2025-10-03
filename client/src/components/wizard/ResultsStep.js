@@ -16,6 +16,7 @@ import toast from 'react-hot-toast';
 import ScoreCard from '../ScoreCard';
 import CoveragePanel from '../CoveragePanel';
 import RuleFindings from '../RuleFindings';
+import API_BASE_URL from '../../config/api';
 
 const ResultsStep = ({ contextData, uploadData, reportData, setReportData, onPrev, onReset }) => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -46,7 +47,7 @@ const ResultsStep = ({ contextData, uploadData, reportData, setReportData, onPre
       if (!uploadData || !uploadData.uploadId) {
         throw new Error('No upload data available');
       }
-      const response = await axios.post('/api/analyze', {
+      const response = await axios.post(`${API_BASE_URL}/api/analyze`, {
         uploadId: uploadData.uploadId,
         questionnaire: contextData.questionnaire
       });
@@ -67,7 +68,7 @@ const ResultsStep = ({ contextData, uploadData, reportData, setReportData, onPre
     if (!reportData) return;
     
     try {
-      const response = await axios.get(`/api/report/${reportData.reportId}/download`, {
+      const response = await axios.get(`${API_BASE_URL}/api/report/${reportData.reportId}/download`, {
         responseType: 'blob'
       });
       

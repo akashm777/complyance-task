@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ExternalLink, BarChart3 } from 'lucide-react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 
 const ShareView = () => {
   const { reportId } = useParams();
@@ -16,7 +17,7 @@ const ShareView = () => {
   const loadShareableReport = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/share/${reportId}`);
+      const response = await axios.get(`${API_BASE_URL}/api/share/${reportId}`);
       setReport(response.data);
     } catch (error) {
       console.error('Load shareable report error:', error);

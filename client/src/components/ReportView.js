@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import ScoreCard from './ScoreCard';
 import CoveragePanel from './CoveragePanel';
 import RuleFindings from './RuleFindings';
+import API_BASE_URL from '../config/api';
 
 const ReportView = () => {
   const { reportId } = useParams();
@@ -20,7 +21,7 @@ const ReportView = () => {
   const loadReport = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/report/${reportId}`);
+      const response = await axios.get(`${API_BASE_URL}/api/report/${reportId}`);
       setReport(response.data);
     } catch (error) {
       console.error('Load report error:', error);
@@ -32,7 +33,7 @@ const ReportView = () => {
 
   const downloadReport = async () => {
     try {
-      const response = await axios.get(`/api/report/${reportId}/download`, {
+      const response = await axios.get(`${API_BASE_URL}/api/report/${reportId}/download`, {
         responseType: 'blob'
       });
       

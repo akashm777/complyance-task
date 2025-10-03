@@ -4,6 +4,7 @@ import { Upload, AlertCircle, CheckCircle, Eye } from 'lucide-react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import DataPreview from '../DataPreview';
+import API_BASE_URL from '../../config/api';
 
 const UploadStep = ({ contextData, uploadData, setUploadData, onNext, onPrev }) => {
   const [isUploading, setIsUploading] = useState(false);
@@ -58,7 +59,7 @@ const UploadStep = ({ contextData, uploadData, setUploadData, onNext, onPrev }) 
       formData.append('country', contextData.country);
       formData.append('erp', contextData.erp);
 
-      const response = await axios.post('/api/upload', formData, {
+      const response = await axios.post(`${API_BASE_URL}/api/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -92,7 +93,7 @@ const UploadStep = ({ contextData, uploadData, setUploadData, onNext, onPrev }) 
     setIsUploading(true);
     
     try {
-      const response = await axios.post('/api/upload', {
+      const response = await axios.post(`${API_BASE_URL}/api/upload`, {
         text: textData,
         country: contextData.country,
         erp: contextData.erp
@@ -119,7 +120,7 @@ const UploadStep = ({ contextData, uploadData, setUploadData, onNext, onPrev }) 
 
   const loadPreview = async (uploadId) => {
     try {
-      const response = await axios.get(`/api/upload/${uploadId}/preview?limit=20`);
+      const response = await axios.get(`${API_BASE_URL}/api/upload/${uploadId}/preview?limit=20`);
       setPreviewData(response.data);
       setShowPreview(true);
     } catch (error) {
