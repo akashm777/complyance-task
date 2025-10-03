@@ -1,0 +1,345 @@
+{
+  "info": {
+    "name": "E-Invoicing Readiness Analyzer API",
+    "description": "Complete API collection for the E-Invoicing Readiness Analyzer assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Database Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health/db",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health",
+            "db"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Upload File (Clean Sample)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "sample_clean.json"
+            },
+            {
+              "key": "country",
+              "value": "UAE",
+              "type": "text"
+            },
+            {
+              "key": "erp",
+              "value": "SAP",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/upload",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Upload File (Flawed Sample)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "sample_flawed.csv"
+            },
+            {
+              "key": "country",
+              "value": "UAE",
+              "type": "text"
+            },
+            {
+              "key": "erp",
+              "value": "Oracle",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/upload",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Upload Text Data",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"invoice_id,issue_date,currency,total_excl_vat,vat_amount,total_incl_vat,seller_name,seller_trn,buyer_name,buyer_trn\\nINV-001,2024-01-15,AED,100.00,5.00,105.00,Test Seller,123456789,Test Buyer,987654321\",\n  \"country\": \"UAE\",\n  \"erp\": \"Custom\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/upload",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Upload Details",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/upload/{{uploadId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "upload",
+            "{{uploadId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Upload Preview",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/upload/{{uploadId}}/preview?limit=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "upload",
+            "{{uploadId}}",
+            "preview"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "20"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Analyze Data",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"uploadId\": \"{{uploadId}}\",\n  \"questionnaire\": {\n    \"webhooks\": true,\n    \"sandbox_env\": true,\n    \"retries\": false\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/analyze",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "analyze"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Analysis Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/analyze/{{uploadId}}/status",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "analyze",
+            "{{uploadId}}",
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Report",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/report/{{reportId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "report",
+            "{{reportId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Download Report",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/report/{{reportId}}/download",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "report",
+            "{{reportId}}",
+            "download"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Recent Reports",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/reports?limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "reports"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Shareable Report",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/share/{{reportId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "share",
+            "{{reportId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Report",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/report/{{reportId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "report",
+            "{{reportId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://your-deployed-app.com/api",
+      "type": "string"
+    },
+    {
+      "key": "uploadId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "reportId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

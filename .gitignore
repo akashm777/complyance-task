@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+*/node_modules/
+**/node_modules/
+
+# Production builds
+build/
+dist/
+*/build/
+*/dist/
+
+# Environment variables
+.env
+*/.env
+**/.env
+
+# Package locks (optional - some prefer to commit these)
+package-lock.json
+*/package-lock.json
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
