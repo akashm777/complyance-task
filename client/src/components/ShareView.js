@@ -232,7 +232,7 @@ const ShareView = () => {
           Want to analyze your own data?
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-6">
-          Get detailed insights into your e-invoicing readiness with our comprehensive analyzer.
+          Get detailed insights into your e-invoicing readiness with InvoiceMend.
         </p>
         <Link to="/" className="btn-primary inline-flex items-center space-x-2">
           <span>Start Your Analysis</span>

@@ -1,7 +1,7 @@
 {
-  "name": "invoice-readiness-analyzer",
+  "name": "invoicemend",
   "version": "1.0.0",
-  "description": "Invoice readiness analyzer for internship assignment",
+  "description": "InvoiceMend - E-invoicing readiness analyzer",
   "main": "server/index.js",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -11,7 +11,7 @@
     "start": "cd server && npm start",
     "install-all": "npm install && cd server && npm install && cd ../client && npm install"
   },
-  "keywords": ["invoice", "gets", "analyzer", "assignment"],
+  "keywords": ["invoice", "gets", "invoicemend", "readiness", "analyzer"],
   "author": "",
   "license": "MIT",
   "devDependencies": {

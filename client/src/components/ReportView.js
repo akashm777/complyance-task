@@ -115,35 +115,47 @@ const ReportView = () => {
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <Link to="/" className="btn-secondary">
+      <div className="space-y-4">
+        {/* Back Button */}
+        <div>
+          <Link to="/" className="inline-flex items-center text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Analyzer
           </Link>
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              E-Invoicing Readiness Report
+        </div>
+        
+        {/* Title and Actions */}
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+          <div className="flex-1">
+            <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              InvoiceMend Readiness Report
             </h1>
-            <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-300 mt-1">
-              <span>Report ID: {reportId}</span>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-gray-600 dark:text-gray-300">
+              <span className="break-all">Report ID: {reportId}</span>
               <div className="flex items-center space-x-1">
                 <Clock className="h-4 w-4" />
                 <span>{new Date(report.meta?.createdAt || Date.now()).toLocaleDateString()}</span>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div className="flex space-x-2">
-          <button onClick={copyShareableLink} className="btn-secondary">
-            <Share2 className="h-4 w-4 mr-2" />
-            Share
-          </button>
-          <button onClick={downloadReport} className="btn-primary">
-            <Download className="h-4 w-4 mr-2" />
-            Download
-          </button>
+          
+          {/* Action Buttons - Improved Design */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-2 lg:flex-shrink-0">
+            <button 
+              onClick={copyShareableLink} 
+              className="inline-flex items-center justify-center px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 shadow-sm hover:shadow-md"
+            >
+              <Share2 className="h-4 w-4 mr-2" />
+              <span className="font-medium">Share Report</span>
+            </button>
+            <button 
+              onClick={downloadReport} 
+              className="inline-flex items-center justify-center px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md font-medium"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              <span>Download JSON</span>
+            </button>
+          </div>
         </div>
       </div>
 

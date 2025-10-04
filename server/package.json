@@ -1,7 +1,7 @@
 {
-  "name": "analyzer-backend",
+  "name": "invoicemend-backend",
   "version": "1.0.0",
-  "description": "Backend API for invoice analyzer",
+  "description": "Backend API for InvoiceMend",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

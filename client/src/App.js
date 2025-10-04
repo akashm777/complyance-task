@@ -33,7 +33,7 @@ function App() {
                   <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-8">
                       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gradient mb-4">
-                        E-Invoicing Readiness Analyzer
+                        InvoiceMend
                       </h1>
                       <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                         Analyze your invoice data against GETS v0.1 standards and discover gaps 
